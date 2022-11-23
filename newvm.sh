@@ -32,7 +32,7 @@ else
 	qm set $1 --boot c --bootdisk scsi0
 	qm set $1 --serial0 socket --vga serial0
 	qm set $1 --sshkey <(head -1 ~/.ssh/authorized_keys)
-	qm set $1 --ipconfig0 ip=192.168.122.$1/24,gw=192.168.122.1
+	qm set $1 --ipconfig0 ip=192.168.122.$1/24,gw=192.168.122.1 --nameserver 192.168.122.104
 	qm set $1 --agent enabled=1
 	qm resize $1 scsi0 ${5}G
 	cp baseusr.yaml usr$1.yaml
