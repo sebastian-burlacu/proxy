@@ -27,7 +27,7 @@ else
 ####### using basic cloud iso
 	qm create $1 --memory $4 --net0 virtio,bridge=vmbr0 --sockets 1 --cores $3 --name $2
 	qm importdisk $1 /mnt/pve/cephfs/template/iso/focal-server-cloudimg-amd64.img pool #local-lvm
-	qm set $1 --scsihw virtio-scsi-pci --scsi0 local-lvm:vm-$1-disk-0
+	qm set $1 --scsihw virtio-scsi-pci --scsi0 pool:vm-$1-disk-0
 	qm set $1 --ide2 local-lvm:cloudinit
 	qm set $1 --boot c --bootdisk scsi0
 	qm set $1 --serial0 socket --vga serial0
