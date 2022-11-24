@@ -15,3 +15,4 @@ packages:
 runcmd:
   - [ systemctl, daemon-reload ]
   - [ systemctl, start, --no-block, qemu-guest-agent ]
+  - [ timedatectl, set-timezone, America/Toronto ]

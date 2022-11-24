@@ -18,7 +18,7 @@ else
 ##	qm set $1 --sshkey <(head -1 ~/.ssh/authorized_keys)
 #	qm set $1 --ipconfig0 ip=192.168.122.$1/24,gw=192.168.122.1
 #	qm set $1 --cicustom "user=cephfs:snippets/usr$1.yaml"
-##	,network=snippets:snippets/net$1.yaml"
+##	,network=cephfs:snippets/net$1.yaml"
 #	qm set $1 --sockets 1 --cores $3 --memory $4 --agent enabled=1
 #	qm resize $1 scsi0 ${5}G
 #	qm start $1
@@ -31,14 +31,20 @@ else
 	qm set $1 --ide2 local-lvm:cloudinit
 	qm set $1 --boot c --bootdisk scsi0
 	qm set $1 --serial0 socket --vga serial0
-	qm set $1 --sshkey <(head -1 ~/.ssh/authorized_keys)
-	qm set $1 --ipconfig0 ip=192.168.122.$1/24,gw=192.168.122.1 --nameserver 192.168.122.104
+#	qm set $1 --sshkey <(head -1 ~/.ssh/authorized_keys)
+#	qm set $1 --ipconfig0 ip=192.168.122.$1/24,gw=192.168.122.1 --nameserver 192.168.122.104
+	mac=$(qm config $1 | grep ^net0 | cut -d'=' -f2 | cut -d',' -f1)
+	mac=${mac,,}
 	qm set $1 --agent enabled=1
 	qm resize $1 scsi0 ${5}G
 	cp baseusr.yaml usr$1.yaml
+	cp basenet.yaml net$1.yaml
 	sed -i "s/VMNAME/$2/g" usr$1.yaml
-	qm set $1 --cicustom "user=cephfs:snippets/usr$1.yaml"
+	sed -i "s/VMID/$1/g" net$1.yaml
+	sed -i "s/VMMAC/$mac/g" net$1.yaml
+	qm set $1 --cicustom "user=cephfs:snippets/usr$1.yaml,network=cephfs:snippets/net$1.yaml"
 	qm start $1
 	qm set $1 --cicustom ""
-	mv usr$1.yaml oldfiles/
+	mv usr$1.yaml net$1.yaml oldfiles/
+	qm move-disk $1 scsi0 pool --delete
 fi
