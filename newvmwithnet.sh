@@ -38,7 +38,7 @@ else
 	qm set $1 --agent enabled=1
 	qm resize $1 scsi0 ${5}G
 	cp baseusr.yaml /mnt/pve/cephfs/snippets/usr$1.yaml
-	cp basenet.yaml /mnt/pve/cephfs/snippets/net$1.yaml
+	cp basenetv2.yaml /mnt/pve/cephfs/snippets/net$1.yaml
 	sed -i "s/VMNAME/$2/g" /mnt/pve/cephfs/snippets/usr$1.yaml
 	sed -i "s/VMID/$1/g" /mnt/pve/cephfs/snippets/net$1.yaml
 	sed -i "s/VMMAC/$mac/g" /mnt/pve/cephfs/snippets/net$1.yaml
