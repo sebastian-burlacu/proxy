@@ -9,7 +9,6 @@ else
 		echo please do not reuse a VM ID - this is currently used for $exists
 		exit 1
 	fi
-####### using basic cloud iso
 	qm create $1 --memory $4 --net0 virtio,bridge=vmbr0 --sockets 1 --cores $3 --name $2
 	qm importdisk $1 /mnt/pve/cephfs/template/iso/focal-server-cloudimg-amd64.img pool
 	qm set $1 --scsihw virtio-scsi-pci --scsi0 pool:vm-$1-disk-0
