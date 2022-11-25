@@ -17,3 +17,5 @@ runcmd:
   - [ systemctl, start, --no-block, qemu-guest-agent ]
   - [ timedatectl, set-timezone, America/Toronto ]
   - [ sh, -c, 'echo "network: {config: disabled}" >> /etc/cloud/cloud.cfg' ]
+  - [ apt, purge, snapd, -y ]
+  - [ apt, autoremove, -y ]
