@@ -32,20 +32,19 @@ else
 	qm set $1 --boot c --bootdisk scsi0
 	qm set $1 --serial0 socket --vga serial0
 #	qm set $1 --sshkey <(head -1 ~/.ssh/authorized_keys)
-	qm set $1 --ipconfig0 ip=192.168.122.$1/24,gw=192.168.122.1 --nameserver 192.168.122.104 --searchdomain "example.com"
-#	mac=$(qm config $1 | grep ^net0 | cut -d'=' -f2 | cut -d',' -f1)
-#	mac=${mac,,}
+#	qm set $1 --ipconfig0 ip=192.168.122.$1/24,gw=192.168.122.1 --nameserver 192.168.122.104 --searchdomain "example.com"
+	mac=$(qm config $1 | grep ^net0 | cut -d'=' -f2 | cut -d',' -f1)
+	mac=${mac,,}
 	qm set $1 --agent enabled=1
 	qm resize $1 scsi0 ${5}G
 	cp baseusr.yaml /mnt/pve/cephfs/snippets/usr$1.yaml
-#	cp basenet.yaml /mnt/pve/cephfs/snippets/net$1.yaml
+	cp basenet.yaml /mnt/pve/cephfs/snippets/net$1.yaml
 	sed -i "s/VMNAME/$2/g" /mnt/pve/cephfs/snippets/usr$1.yaml
-#	sed -i "s/VMID/$1/g" /mnt/pve/cephfs/snippets/net$1.yaml
-#	sed -i "s/VMMAC/$mac/g" /mnt/pve/cephfs/snippets/net$1.yaml
-	qm set $1 --cicustom "user=cephfs:snippets/usr$1.yaml"
-#	,network=cephfs:snippets/net$1.yaml"
+	sed -i "s/VMID/$1/g" /mnt/pve/cephfs/snippets/net$1.yaml
+	sed -i "s/VMMAC/$mac/g" /mnt/pve/cephfs/snippets/net$1.yaml
+	qm set $1 --cicustom "user=cephfs:snippets/usr$1.yaml,network=cephfs:snippets/net$1.yaml"
 	qm start $1
 #	qm set $1 --cicustom ""
 #	mv /mnt/pve/cephfs/snippets/usr$1.yaml /mnt/pve/cephfs/snippets/net$1.yaml oldfiles/
-	mv /mnt/pve/cephfs/snippets/usr$1.yaml oldfiles/
+#	mv /mnt/pve/cephfs/snippets/usr$1.yaml oldfiles/
 fi
