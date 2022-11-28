@@ -1,0 +1,35 @@
+options {
+	directory "/var/cache/bind";
+	// listen port and address
+	listen-on port 53 { localhost; 192.168.122.103; };
+
+	// for public DNS server - allow from any
+	allow-query { any; };
+
+	// define the forwarder for DNS queries
+	forwarders { 1.1.1.1; };
+
+	// enable recursion that provides recursive query
+	recursion yes;
+
+	// If there is a firewall between you and nameservers you want
+	// to talk to, you may need to fix the firewall to allow multiple
+	// ports to talk.  See http://www.kb.cert.org/vuls/id/800113
+
+	// If your ISP provided one or more IP addresses for stable 
+	// nameservers, you probably want to use them as forwarders.  
+	// Uncomment the following block, and insert the addresses replacing 
+	// the all-0's placeholder.
+
+	// forwarders {
+	// 	0.0.0.0;
+	// };
+
+	//========================================================================
+	// If BIND logs error messages about the root key being expired,
+	// you will need to update your keys.  See https://www.isc.org/bind-keys
+	//========================================================================
+	dnssec-validation auto;
+
+	// listen-on-v6 { any; };
+};
