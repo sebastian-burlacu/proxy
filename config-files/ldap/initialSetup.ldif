@@ -1,0 +1,31 @@
+dn: ou=People,dc=example,dc=com
+objectClass: organizationalUnit
+objectClass: top
+ou: People
+
+dn: ou=Groups,dc=example,dc=com
+objectClass: organizationalUnit
+objectClass: top
+ou: Groups
+
+dn: cn=sebastian,ou=Groups,dc=example,dc=com
+objectClass: posixGroup
+cn: sebastian
+gidNumber: 1001
+description: Group account
+
+dn: uid=sebastian,ou=People,dc=example,dc=com
+objectClass: top
+objectClass: account
+objectClass: posixAccount
+objectClass: extensibleObject
+uid: sebastian
+loginShell: /bin/bash
+homeDirectory: /home/sebastian
+cn: sebastian
+uidNumber: 1001
+gidNumber: 1001
+description: User account
+mail: sebastian@example.com
+displayName: Sebastian Burlacu
+
