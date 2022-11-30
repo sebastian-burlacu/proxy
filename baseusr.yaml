@@ -19,3 +19,4 @@ runcmd:
   - [ sh, -c, 'echo "network: {config: disabled}" >> /etc/cloud/cloud.cfg' ]
   - [ apt, purge, snapd, -y ]
   - [ apt, autoremove, -y ]
+  - [ sh, -c, 'update-alternatives --list editor | grep vim.basic | xargs -n1 update-alternatives --set editor' ]
