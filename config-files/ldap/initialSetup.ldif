@@ -11,7 +11,7 @@ objectClass: simpleSecurityObject
 objectClass: organizationalRole
 cn: admin
 description: LDAP administrator
-userPassword:: e1NTSEF9OGZVS0ZmcG0wZlBXRFVkOVVlY3B3eU5mSWR3dVYwLzU=
+userPassword: {SSHA}MdXDZo6q+x5n6/IMn/cqjpWSDZ1ZWbrv
 structuralObjectClass: organizationalRole
 modifyTimestamp: 20221128025848Z
 
@@ -45,4 +45,4 @@ gidNumber: 1001
 description: User account
 mail: sebastian@example.com
 displayName: Sebastian Burlacu
-
+userPassword: {SSHA}/ZnBmNPhPnMbzqsxYSseWWufCWf51VEc
