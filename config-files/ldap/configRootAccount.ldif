@@ -1,7 +1,4 @@
 dn: olcDatabase={1}mdb,cn=config
 changetype: modify
-add: olcRootDN
-olcRootDN: cn=admin,cn=config
--
 replace: olcRootPW
 olcRootPW: {SSHA}Qd1LTS/FUfqyJOdWHBqVQxI2+SnvZU1Y

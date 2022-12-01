@@ -1,5 +1,6 @@
 #!/bin/sh
 
+cat debconf-selections | debconf-set-selections
 DEBIAN_FRONTEND=noninteractive apt install -y slapd ldap-utils libnss-ldap libpam-ldap
 systemctl stop slapd
 mv /var/lib/ldap/data.mdb /var/lib/ldap/data.mdb.old
