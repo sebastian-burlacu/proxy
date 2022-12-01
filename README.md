@@ -11,11 +11,18 @@ basenetv2.yaml: cloud-init for network config v2
 
 ## current running services
 
-| vmname | opsys | cores | mem | application | notes |
+| vmname | ID | opsys | cores | mem | application | notes |
 |---|---|---|---|---|---|
-| dns01 | ubuntu 20.04 | 1 | 768M | bind dns server | zone: example.com |
-| pihole | ubuntu 20.04 | 1 | 768M | pihole network-wide ad blocking |  |
-| gitea | ubuntu 20.04 | 1 | 1G | gitea lightweight git server | works great |
-| gitlab | ubuntu 20.04 | 2 | 5G | gitlab fully featured git server | kinda slow |
-| ldap1 | ubuntu 20.04 | 2 | 2G | openldap directory server | easy to use but lacking in features |
-| ansible01 | ubuntu 20.04 | 2 | 3G | ansible config mgmt |  |
+| dns01 | 103 | ubuntu 20.04 | 1 | 768M | bind dns server | zone: example.com |
+| pihole | 104 | ubuntu 20.04 | 1 | 768M | pihole network-wide ad blocking |  |
+| gitea | 106 | ubuntu 20.04 | 1 | 1G | gitea lightweight git server | works great |
+| gitlab | 107 | ubuntu 20.04 | 2 | 5G | gitlab fully featured git server | kinda slow |
+| ldap1 | 105 | ubuntu 20.04 | 2 | 2G | openldap directory server | easy to use but lacking in features |
+| ansible01 | 102 | ubuntu 20.04 | 2 | 3G | ansible config mgmt |  |
+| ldap2 | 108 | ubuntu 20.04 | 1 | 1G | openldap | to test deploying slapd via script |
+
+## client machines
+
+| vmname | ID | opsys | cores | mem | notes |
+|---|---|---|---|---|---|
+| vm101 | 101 | ubuntu 20.04 | 1 | 2G |  |

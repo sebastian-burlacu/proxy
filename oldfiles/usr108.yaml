@@ -1,0 +1,22 @@
+#cloud-config
+hostname: ldap2
+manage_etc_hosts: true
+ssh_authorized_keys:
+  - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC1xLSoBWXC4OaMZtaT0DVVo4nuQLVPcDtxq/JiN+dNZdOgNc66ts+xu254sVu7+IBYrutBO7b8Ygu9dw9B1gj0TYP/6pX7eALn8JMVK9PPqTllG6Y1Ei70dO7CYKfJLUvQOySqJflyAj0A0THu1k7heVpo2kP0OpE5tiKkfyJsfyE1z+5ilUUkLer+6f63WL96C12fLHPKeYjLq/wfNyIi9GM/6rEjinmy3AsUV2XN6WKJ8h7CvgVCxRL0x4tGIli4EDBj2bso+fQeUERbaBe3CPRk93n0zOixjWGMPpfeBkRVshU+4GuGjZyO9gfyWnwHyg/CqFqQ7gso2RLUhWFIeKGg0960KDrn/0hxLtY8eYSuF+Lu55jAimAJm1DrMbtlZTUGbLPOsnxRbPQRdHPvkrFpr20OBGuHjlUVNcR8FxOjrJLfLfY5MuvhIrzw4k/MMx/qgNzCdB+9G+rgPJSDVQuTrhrdUbjTibY4ybOzpuYNGCTEnbpJ7Fy5R/uP8PU= sebastian@pop-os
+chpasswd:
+  expire: False
+users:
+  - default
+package_update: true
+package_upgrade: true
+packages:
+  - qemu-guest-agent
+  - vim
+runcmd:
+  - [ systemctl, daemon-reload ]
+  - [ systemctl, start, --no-block, qemu-guest-agent ]
+  - [ timedatectl, set-timezone, America/Toronto ]
+  - [ sh, -c, 'echo "network: {config: disabled}" >> /etc/cloud/cloud.cfg' ]
+  - [ apt, purge, snapd, -y ]
+  - [ apt, autoremove, -y ]
+  - [ sh, -c, 'update-alternatives --list editor | grep vim.basic | xargs -n1 update-alternatives --set editor' ]

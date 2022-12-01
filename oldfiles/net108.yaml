@@ -1,0 +1,13 @@
+version: 2
+ethernets:
+  eth0:
+    match:
+      macaddress: '9e:42:d6:a3:ca:e3'
+    dhcp4: false
+    addresses: 
+      - 192.168.122.108/24
+    gateway4: 192.168.122.1
+    nameservers:
+      search: [example.com]
+      addresses: [192.168.122.104]
+    set-name: eth0
