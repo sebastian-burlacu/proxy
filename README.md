@@ -12,7 +12,7 @@ basenetv2.yaml: cloud-init for network config v2
 ## current running services
 
 | vmname | ID | opsys | cores | mem | application | notes |
-|---|---|---|---|---|---|
+|---|---|---|---|---|---|---|
 | dns01 | 103 | ubuntu 20.04 | 1 | 768M | bind dns server | zone: example.com |
 | pihole | 104 | ubuntu 20.04 | 1 | 768M | pihole network-wide ad blocking |  |
 | gitea | 106 | ubuntu 20.04 | 1 | 1G | gitea lightweight git server | works great |
