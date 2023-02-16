@@ -1,15 +1,13 @@
-version: 1
-config:
-    - type: physical
-      name: eth0
-      mac_address: '8e:0a:e3:55:54:63'
-      subnets:
-      - type: static
-        address: '192.168.122.105'
-        netmask: '255.255.255.0'
-        gateway: '192.168.122.1'
-    - type: nameserver
-      address:
-      - '192.168.122.104'
-      search:
-      - 'example.com'
+version: 2
+ethernets:
+  eth0:
+    match:
+      macaddress: 'f2:9b:de:ae:eb:5c'
+    dhcp4: false
+    addresses: 
+      - 192.168.122.105/24
+    gateway4: 192.168.122.1
+    nameservers:
+      search: [example.com]
+      addresses: [192.168.122.104]
+    set-name: eth0

@@ -20,8 +20,8 @@ basenetv2.yaml: cloud-init for network config v2
 | ldap1 | 105 | ubuntu 20.04 | 2 | 2G | openldap directory server | easy to use but lacking in features |
 | ansible01 | 102 | ubuntu 20.04 | 2 | 3G | ansible config mgmt |  |
 | ldap2 | 108 | ubuntu 20.04 | 1 | 1G | openldap | to test deploying slapd via script |
-| haproxy1 | 109 | ubuntu 20.04 | 1 | 768M | haproxy |  |
-| haproxy2 | 110 | ubuntu 20.04 | 1 | 768M | haproxy |  |
+| haproxy1 | 109 | ubuntu 20.04 | 1 | 768M | haproxy | hosting ldap 192.168.122.113 load balanced between ldap1 and ldap2 |
+| haproxy2 | 110 | ubuntu 20.04 | 1 | 768M | haproxy | hosting ldap 192.168.122.113 load balanced between ldap1 and ldap2 |
 
 ## client machines
 
