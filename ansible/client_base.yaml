@@ -1,0 +1,11 @@
+#!/usr/bin/env ansible-playbook
+- hosts: clients
+  module_defaults:
+          apt:
+                  force_apt_get: yes
+                  install_recommends: yes
+                  update_cache: yes
+                  cache_valid_time: 3600
+  roles:
+          - {role: ldap-client, tags: ldap-client, vars: [ ansible_user: ubuntu, become: yes ]}
+          - {role: dummy, tags: dummy}

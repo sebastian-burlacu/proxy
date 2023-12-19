@@ -1,0 +1,30 @@
+- name: install packages
+  apt:
+          pkg:
+                  - libnss-ldap
+                  - libpam-ldap
+
+- name: configure ldap
+  template:
+          src: ldap.conf
+          dest: /etc/ldap.conf
+          owner: root
+          group: root
+          mode: 0644
+
+- name: enable ldap nss module
+  lineinfile:
+          dest: /etc/nsswitch.conf
+          line: '\1 ldap'
+          regexp: '^({{ item }}:(?!.*\bldap\b).*?)\s*$'
+          backrefs: yes
+  with_items:
+          - passwd
+          - group
+
+- name: enable password auth
+  lineinfile:
+          dest: /etc/ssh/sshd_config
+          line: 'PasswordAuthentication yes'
+          regexp: '^PasswordAuthentication no$'
+  notify: restart sshd

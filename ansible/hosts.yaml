@@ -1,0 +1,27 @@
+all:
+  children:
+    clients:
+      hosts:
+        vm101: {}
+        vm110: {}
+        vm111: {}
+    core:
+      children:
+        ansible_servers:
+          hosts:
+            ansible01:
+              ansible_connection: local
+        dns_servers:
+          hosts:
+            dns01: {}
+        git_servers:
+          hosts:
+            gitea: {}
+            gitlab: {}
+        ldap_servers:
+          hosts:
+            ldap1: {}
+        pihole_servers:
+          hosts:
+            pihole: {}
+    ungrouped: {}

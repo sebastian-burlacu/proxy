@@ -1,0 +1,13 @@
+- name: install packages
+  apt:
+          pkg:
+                  - jq
+                  - git
+
+- name: copy config file
+  template:
+          src: file.conf
+          dest: /etc/dummyfile.conf
+          owner: root
+          group: root
+          mode: 0754
